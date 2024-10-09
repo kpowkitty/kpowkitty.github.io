@@ -1,7 +1,34 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <meta http-equiv="refresh" content="0; url=https://kpowkitty.github.io/about.html">
-</head>
-<body>
-</body>
+    <body>
+        <div id="app"></div>
+		<!-- 	
+				two react scripts:
+				react=core React library
+				react-dom=DOM=specific methods needed to use React with DOM
+
+				babel=translates JSX to javascript for you
+		-->
+		<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    	<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script type="text/jsx">
+		/* imperative example
+            selects the element
+            const app = document.getElementById('app');
+            // creates a new h1 element
+            const header = document.createElement('h1');
+            // creates a new text node for the h1 element
+            const text = 'Develop. Preview. Ship.';
+            const headerContent = document.createTextNode(text);
+            // appends the text to the h1 element
+            header.appendChild(headerContent);
+            // places the h1 element inside the <div>
+            app.appendChild(header);
+		*/
+		// declarative example with React
+			const app = document.getElementById('app');
+			const root = ReactDOM.createRoot(app);
+			root.render(<h1>Develop. Preview. Ship.</h1>);
+        </script>
+    </body>
+</html>
