@@ -12,7 +12,7 @@
     	<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
         <script type="text/jsx">
-		/* imperative example
+/*------imperative example
             selects the element
             const app = document.getElementById('app');
             // creates a new h1 element
@@ -24,11 +24,94 @@
             header.appendChild(headerContent);
             // places the h1 element inside the <div>
             app.appendChild(header);
-		*/
-		// declarative example with React
+		
+--------declarative example with React
 			const app = document.getElementById('app');
 			const root = ReactDOM.createRoot(app);
 			root.render(<h1>Develop. Preview. Ship.</h1>);
+*/
+			const app = document.getElementById('app');
+
+			function Header({ title }) {
+				console.log(title); // "React"
+				return <h1>{title}</h1>;
+			}
+			
+			function HomePage() {
+				return (
+					<div>
+					{/*Nesting the Header Component*/}
+					<Header title="React" />
+					</div>
+				);
+			}
+
+			// Examples of adding Javascript expression inside curly braces
+			// An object property with dot notation:
+			function Header(props) {
+  				return <h1>{props.title}</h1>;
+			}
+
+			// A template literal:
+			function Header({ title }) {
+ 		 		return <h1>{`Cool ${title}`}</h1>;
+			}
+
+			// The returned value of a function:
+			function createTitle(title) {
+				if (title) {
+					return title;
+				} else {
+					return 'Default title';
+			  	}
+			}
+			 
+			function Header({ title }) {
+				return <h1>{createTitle(title)}</h1>;
+			}
+
+			// Ternary operators:
+			function Header({ title }) {
+ 				return <h1>{title ? title : 'Default Title'}</h1>;
+			}
+			// Now you can pass any string to your title prop, or,
+			// if you used the ternary operator, you could even
+			// not pass a title prop at all, since you've accounted
+			// for the default case in your component:
+			function HomePage() {
+  				return (
+    				<div>
+      					<Header />
+   					</div>
+  				);
+			}
+
+			// Iterating through lists
+			function HomePage() {
+  				const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+				
+				function handleClick() {
+					console.log("increment like count")
+				}
+			 
+				return (
+			    	<div>
+			    		<Header title="Develop. Preview. Ship." />
+			    		<ul>
+			        		{names.map((name) => (
+								<li key ={name}>{name}</li>
+			        		))}
+			      		</ul>
+						<!-- Adding interactivity: button -->
+						<!-- (event names must be camel case)-->
+						<button onClick={handleClick}>Like</button>
+			    	</div>
+			  	);
+			}
+
+		
+			const root = ReactDOM.createRoot(app);
+			root.render(<HomePage />);
         </script>
     </body>
 </html>
